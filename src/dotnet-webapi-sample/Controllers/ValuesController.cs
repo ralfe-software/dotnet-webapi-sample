@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DotnetWebApiSample.Controllers
@@ -9,16 +10,18 @@ namespace DotnetWebApiSample.Controllers
     {
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult<IEnumerable<int>> Get()
         {
-            return new string[] { "value1", "value2" };
-        }
+            var r = new Random();
+            
+            var gameNumbers = new int[6];
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
-        {
-            return "value";
+            for (int i = 0; i < gameNumbers.Length; i++)
+            {
+                gameNumbers[i] = r.Next(1, 50);
+            }
+
+            return gameNumbers;
         }
     }
 }
